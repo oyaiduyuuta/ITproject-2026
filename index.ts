@@ -22,8 +22,9 @@ app.set('views', path.join(process.cwd(), 'views')); // EJSファイルを保存
 
 // 「/」にアクセスされたときの処理
 app.get('/', (req: Request, res: Response): void => {
-  res.send('Hello Worl test !!!!!!');
+  res.send('Hello Worl！！');
 });
+
 
 
 // ------------------------------
