@@ -1,3 +1,4 @@
+import { pool } from './db';
 import express, { Request, Response } from 'express';
 import path from 'path';
 
@@ -30,7 +31,18 @@ app.get('/', (req: Request, res: Response): void => {
 // ------------------------------
 // サーバー起動
 // ------------------------------
-
+app.get('/api/db-check', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT 1 AS connection_test');
+    res.json({
+      status: 'ok',
+      database: result.rows[0].connection_test === 1 ? 'connected' : 'error',
+    });
+  } catch (error) {
+    console.error('DB接続確認に失敗しました。', error);
+    res.status(503).json({ status: 'error', database: 'unavailable' });
+  }
+});
 
 app.listen(port, (): void => {
   console.log(`Server started: http://localhost:${port}`);
