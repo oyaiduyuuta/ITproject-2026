@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODO アプリ</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+    h1 { color: #333; }
+    .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+    input[type="text"] { flex: 1; padding: 8px; font-size: 16px; }
+    button { padding: 8px 16px; font-size: 16px; cursor: pointer; }
+    ul { list-style: none; padding: 0; }
+    li { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
+    .completed { text-decoration: line-through; color: #888; }
+    .delete-btn { background-color: #ff4d4f; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>TODO リスト</h1>
+
+  <!-- タスク追加フォーム -->
+  <div class="input-group">
+    <input type="text" id="todoInput" placeholder="新しいタスクを入力..." />
+    <button id="addBtn">追加</button>
+  </div>
+
+  <!-- TODO一覧リスト -->
+  <ul id="todoList"></ul>
+
+  <script src="/todo/todo.js"></script>
+</body>
+</html>
