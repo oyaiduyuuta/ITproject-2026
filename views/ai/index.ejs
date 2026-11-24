@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 760px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      line-height: 1.6;
+      color: #222;
+    }
+    .nav-links {
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+    .nav-links a {
+      margin-right: 1rem;
+      color: #0066cc;
+      text-decoration: none;
+    }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      resize: vertical;
+    }
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+    .char-counter {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    button[type="submit"] {
+      padding: 0.6rem 1.4rem;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #0066cc;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button[type="submit"]:disabled {
+      background-color: #99bce0;
+      cursor: not-allowed;
+    }
+    .status-box {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 6px;
+    }
+    .loading {
+      background-color: #f4f6f8;
+      color: #444;
+    }
+    .error {
+      background-color: #fdecea;
+      border: 1px solid #f5c2c7;
+      color: #842029;
+    }
+    .answer {
+      background-color: #f8fbff;
+      border: 1px solid #cfe2ff;
+    }
+    .answer h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: #084298;
+    }
+    #answer-content {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-links">
+    <a href="/">TOPへ戻る</a>
+    <a href="/todo">TODO一覧へ</a>
+  </nav>
+
+  <h1><%= title %></h1>
+  <p>疑問点や調べたいことを入力してください。AI（Gemini）が回答を生成します。</p>
+
+  <form id="ai-question-form" novalidate>
+    <label for="question-input" hidden>質問内容</label>
+    <textarea
+      id="question-input"
+      name="question"
+      rows="5"
+      maxlength="1000"
+      placeholder="例: TypeScriptの型推論のメリットを簡潔に教えてください。"
+      required
+    ></textarea>
+    <div class="form-footer">
+      <span id="char-count" class="char-counter">0 / 1000</span>
+      <button type="submit" id="submit-btn">質問する</button>
+    </div>
+  </form>
+
+  <div id="loading-indicator" class="status-box loading" role="status" hidden>
+    回答を生成しています。しばらくお待ちください...
+  </div>
+
+  <div id="error-box" class="status-box error" role="alert" hidden></div>
+
+  <section id="answer-box" class="status-box answer" hidden>
+    <h2>AIからの回答</h2>
+    <div id="answer-content"></div>
+  </section>
+
+  <script src="/ai/ai.js" defer></script>
+</body>
+</html>

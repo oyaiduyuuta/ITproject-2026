@@ -2,6 +2,7 @@ import { pool } from './db';
 import express, { Request, Response } from 'express';
 import path from 'path';
 import todoRouter from './src/apps/todo/todoRouter';
+import aiRouter from './src/apps/ai/aiRouter';
 
 
 const app = express(); // Expressアプリケーションを作成
@@ -17,6 +18,7 @@ app.use(express.static(path.join(process.cwd(), 'public'))); // CSSや画像な�
 app.set('view engine', 'ejs'); // テンプレートエンジンにEJSを設定
 app.set('views', path.join(process.cwd(), 'views')); // EJSファイルを保存するフォルダーを指定
 app.use('/api/v1/todos', todoRouter);
+app.use('/ai', aiRouter);
 
 
 
